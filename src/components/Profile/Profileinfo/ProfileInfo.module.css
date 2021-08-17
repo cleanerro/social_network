@@ -1,0 +1,14 @@
+.descriptionInfo{
+    padding-left: 10px;
+    background-color: aliceblue;
+}
+
+.descriptionInfo img{
+    width: 150px;
+}
+
+.headerInfo img {
+    width: 520px;
+    height: 100px;
+
+}

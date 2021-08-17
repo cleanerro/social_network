@@ -1,0 +1,20 @@
+.nav {
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.item {
+    color: black;
+    padding: 5px;
+    font-size: medium;
+
+}
+
+.item a {
+    text-decoration: none;
+    color: midnightblue;
+}
+
+.item a.active {
+    color: darkgoldenrod;
+}

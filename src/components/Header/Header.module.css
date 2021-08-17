@@ -1,0 +1,29 @@
+.header {
+    grid-area: h;
+    background-color: white;
+    height: 80px;
+    border: 1px solid gainsboro;
+
+}
+
+.search {
+    position: absolute;
+    top: 30px;
+    left: 400px
+}
+
+.header img {
+    width: 120px;
+    padding-top: 5px;
+    padding-left: 15px;;
+
+}
+
+.loginBlock{
+    float: right;
+}
+.loginBlock a{
+    color: midnightblue;
+    text-decoration: none;
+    margin: 15px;
+}
