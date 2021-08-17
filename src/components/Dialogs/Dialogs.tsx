@@ -2,12 +2,12 @@ import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {ActionsType, MessagePage,} from "../../redux/state";
+import {ActionsTypes, MessagePage} from "../../redux/state";
 
 
 type DialogType = {
     messagePage: MessagePage
-    dispatch: (action: ActionsType) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const Dialogs: React.FC<DialogType> = ({messagePage, dispatch }) => {
