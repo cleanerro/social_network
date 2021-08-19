@@ -2,7 +2,7 @@ import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {ActionsTypes, MessagePage} from "../../redux/state";
+import {ActionsTypes, addMessageAC, changeNewTextAC, MessagePage, onMessageChangeAC} from "../../redux/state";
 
 
 type DialogType = {
@@ -19,13 +19,13 @@ export const Dialogs: React.FC<DialogType> = ({messagePage, dispatch }) => {
     let newDialogElement = React.createRef<HTMLTextAreaElement>()
 
     const addMessage = () => {
-        dispatch({type: "ADD-MESSAGE" })
+        dispatch(addMessageAC())
     }
 
 
     const onMessageChange = () => {
         if (newDialogElement.current) {
-            dispatch({type: "UPDATE-NEW-MESSAGE", newText : newDialogElement.current.value })
+            dispatch(onMessageChangeAC(newDialogElement.current.value))
         }
     }
 
