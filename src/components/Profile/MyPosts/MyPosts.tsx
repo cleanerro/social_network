@@ -1,14 +1,14 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {ActionsTypes,addPostAC, changeNewTextAC,ProfilePage} from "../../../redux/state";
+import {ActionsTypes, ProfilePageType} from "../../../redux/state";
+import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
 
 
 type ProfileType = {
-    profilePage: ProfilePage
+    profilePage: ProfilePageType
     dispatch: (action: ActionsTypes) => void
 }
-
 
 
 export const MyPosts = (props: ProfileType) => {
@@ -24,7 +24,7 @@ export const MyPosts = (props: ProfileType) => {
     const onPostChange = () => {
         if (newPostElement.current) {
             props.dispatch(changeNewTextAC(newPostElement.current.value))
-           // props.dispatch({type: "UPDATE-NEW-POST", newText: newPostElement.current.value })
+            // props.dispatch({type: "UPDATE-NEW-POST", newText: newPostElement.current.value })
         }
     }
 

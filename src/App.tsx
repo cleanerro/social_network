@@ -25,7 +25,7 @@ export const App: React.FC<PropsType> = ({store}) => {
                         <Navbar/>
                     </div>
                     <div className='column-center'>
-                        <Route path='/dialogs' render={() => <Dialogs messagePage={state.messagePage}
+                        <Route path='/dialogs' render={() => <Dialogs dialogsPage={state.dialogsPage}
                                                                       dispatch={store.dispatch.bind(store)}/>}/>
                         <Route path='/profile' render={() => <Profile profilePage={state.profilePage}
                                                                       dispatch={store.dispatch.bind(store)}/>}/>

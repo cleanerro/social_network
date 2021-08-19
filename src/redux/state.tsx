@@ -1,3 +1,6 @@
+import {addPostAC, changeNewTextAC, profileReducer} from "./profile-reducer";
+import {addMessageAC, dialogsReducer, onMessageChangeAC} from "./dialogs-reducer";
+
 export type DialogsType = {
     id: number
     name: string
@@ -11,18 +14,18 @@ export type PostsDataType = {
     message: string
     likesCount: string
 }
-export type ProfilePage = {
+export type ProfilePageType = {
     posts: Array<PostsDataType>
     newPostText: string
 }
-export type MessagePage = {
+export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageText: string
 }
 export type StateType = {
-    profilePage: ProfilePage
-    messagePage: MessagePage
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
 }
 
 
@@ -32,7 +35,7 @@ export type UpdateNewMessageActionsTypes = {
 }
 
 
-export type StoreType ={
+export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
     subscribe: (callback: () => void) => void
@@ -47,179 +50,57 @@ export type ActionsTypes =
     ReturnType<typeof addMessageAC> |
     ReturnType<typeof onMessageChangeAC>
 
-export const addPostAC = () =>({ type: "ADD-POST"}) as const
-export const changeNewTextAC = (newText:string) => ({type: "UPDATE-NEW-POST", newText: newText}) as const
-export const addMessageAC = () =>({ type: "ADD-MESSAGE"}) as const
-export const onMessageChangeAC = (newText:string) => ({type: 'UPDATE-NEW-MESSAGE', newText: newText}) as const
 
 
 
-
-
-let store: StoreType  = {
+let store: StoreType = {
     _state: {
-    profilePage: {
-        posts: [
-            {id: 1, message: 'hi', likesCount: '56'},
-            {id: 2, message: 'I am front-end developer', likesCount: '86'},
-            {id: 3, message: 'Yo', likesCount: '46'},
-            {id: 4, message: 'Yo', likesCount: '57'},
-            {id: 5, message: 'Hello', likesCount: '44'},
-        ],
-        newPostText: ''
+        profilePage: {
+            posts: [
+                {id: 1, message: 'hi', likesCount: '56'},
+                {id: 2, message: 'I am front-end developer', likesCount: '86'},
+                {id: 3, message: 'Yo', likesCount: '46'},
+                {id: 4, message: 'Yo', likesCount: '57'},
+                {id: 5, message: 'Hello', likesCount: '44'},
+            ],
+            newPostText: ''
+        },
+        dialogsPage: {
+            dialogs: [
+                {id: 1, name: 'Andry'},
+                {id: 2, name: 'Roma'},
+                {id: 3, name: 'Sergy'},
+                {id: 4, name: 'John'},
+                {id: 5, name: 'Devid'},
+
+            ],
+            messages: [
+                {id: 1, message: 'hi'},
+                {id: 2, message: 'I am front-end developer'},
+                {id: 3, message: 'Yo'},
+                {id: 4, message: 'Yo'},
+                {id: 5, message: 'Hello'},
+            ],
+            newMessageText: ''
+        }
     },
-    messagePage: {
-        dialogs: [
-            {id: 1, name: 'Andry'},
-            {id: 2, name: 'Roma'},
-            {id: 3, name: 'Sergy'},
-            {id: 4, name: 'John'},
-            {id: 5, name: 'Devid'},
-        ],
-        messages: [
-            {id: 1, message: 'hi'},
-            {id: 2, message: 'I am front-end developer'},
-            {id: 3, message: 'Yo'},
-            {id: 4, message: 'Yo'},
-            {id: 5, message: 'Hello'},
-        ],
-        newMessageText: ''
-    }
-},
-    _callSubscriber () {
+    _callSubscriber() {
         console.log('State was changed')
     },
     getState() {
         return this._state
     },
 
-    dispatch(action){
-        if(action.type ==='ADD-POST'){
-            let newPost: PostsDataType = {
-                id: 7,
-                message: this._state.profilePage.newPostText,
-                likesCount: '0'
-            }
-            this._state.profilePage.posts.unshift(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber()
-        }else if(action.type === 'UPDATE-NEW-POST'){
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber()
-        }else if(action.type === 'ADD-MESSAGE'){
-            let newMessage: MessagesType = {
-                id: 7,
-                message: this._state.messagePage.newMessageText
-            }
-            this._state.messagePage.messages.push(newMessage)
-            this._state.messagePage.newMessageText = ''
-            this._callSubscriber()
-        }else if(action.type === 'UPDATE-NEW-MESSAGE'){
-            this._state.messagePage.newMessageText = action.newText
-            this._callSubscriber()
-
-        }
-    },
-   /* addPost (){
-        let newPost: PostsDataType = {
-            id: 7,
-            message: this._state.profilePage.newPostText,
-            likesCount: '0'
-        }
-        this._state.profilePage.posts.unshift(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber()
-    },
-    updateNewPost (newText: string){
-        this._state.profilePage.newPostText = newText
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._callSubscriber()
 
     },
-    addMessage() {
-        let newMessage: MessagesType = {
-            id: 7,
-            message: this._state.messagePage.newMessageText
-        }
-        this._state.messagePage.messages.push(newMessage)
-        this._state.messagePage.newMessageText = ''
-        this._callSubscriber()
 
-    },
-    updateNewMessage (newText: string){
-        this._state.messagePage.newMessageText = newText
-        this._callSubscriber()
-
-    },*/
-    subscribe(callback: () => void){
+    subscribe(callback: () => void) {
         this._callSubscriber = callback
     }
 }
 
-
-/*let state: StateType = {
-    profilePage: {
-        posts: [
-            {id: 1, message: 'hi', likesCount: '56'},
-            {id: 2, message: 'I am front-end developer', likesCount: '86'},
-            {id: 3, message: 'Yo', likesCount: '46'},
-            {id: 4, message: 'Yo', likesCount: '57'},
-            {id: 5, message: 'Hello', likesCount: '44'},
-        ],
-        newPostText: ''
-    },
-    messagePage: {
-        dialogs: [
-            {id: 1, name: 'Andry'},
-            {id: 2, name: 'Roma'},
-            {id: 3, name: 'Sergy'},
-            {id: 4, name: 'John'},
-            {id: 5, name: 'Devid'},
-        ],
-        messages: [
-            {id: 1, message: 'hi'},
-            {id: 2, message: 'I am front-end developer'},
-            {id: 3, message: 'Yo'},
-            {id: 4, message: 'Yo'},
-            {id: 5, message: 'Hello'},
-        ],
-        newMessageText: ''
-    }
-}
-export let addPost = () => {
-    let newPost: PostsDataType = {
-        id: 7,
-        message: state.profilePage.newPostText,
-        likesCount: '0'
-    }
-    state.profilePage.posts.push(newPost)
-    state.profilePage.newPostText = ''
-    renderEntireTree()
-
-}
-export let updateNewPost = (newText: string) => {
-    state.profilePage.newPostText = newText
-    renderEntireTree()
-
-}
-export let addMessage = () => {
-    let newMessage: MessagesType = {
-        id: 7,
-        message: state.messagePage.newMessageText
-    }
-    state.messagePage.messages.push(newMessage)
-    state.messagePage.newMessageText = ''
-    renderEntireTree()
-
-}
-export let updateNewMessage = (newText: string) => {
-    state.messagePage.newMessageText = newText
-    renderEntireTree()
-
-}
-let renderEntireTree = () => {
-    console.log('State was changed')
-}
-export const subscribe = (callback: () => void) => {
-    renderEntireTree = callback
-}*/
 export default store
