@@ -1,6 +1,27 @@
-import {ActionsTypes, PostsDataType, ProfilePageType} from "./state";
+import {PostsDataType} from "../App";
+import {ActionsTypes} from "./redux-store";
 
-export const profileReducer = (state: ProfilePageType, action: ActionsTypes) => {
+
+export type ProfilePageType = {
+    posts: Array<PostsDataType>
+    newPostText: string
+    profile: null
+}
+
+let initialState: ProfilePageType = {
+    posts: [
+        {id: 1, message: 'hi', likesCount: '56'},
+        {id: 2, message: 'I am front-end developer', likesCount: '86'},
+        {id: 3, message: 'Yo', likesCount: '46'},
+        {id: 4, message: 'Yo', likesCount: '57'},
+        {id: 5, message: 'Hello', likesCount: '44'},
+    ],
+    newPostText: '',
+    profile: null
+}
+
+export const profileReducer = (state = initialState, action: ActionsTypes): ProfilePageType => {
+
     switch (action.type) {
         case "ADD-POST":
             let newPost: PostsDataType = {
@@ -8,16 +29,19 @@ export const profileReducer = (state: ProfilePageType, action: ActionsTypes) => 
                 message: state.newPostText,
                 likesCount: '0'
             }
-            state.posts.unshift(newPost)
-            state.newPostText = ''
-            return state
+            return {
+                ...state,
+                posts: [newPost, ...state.posts],
+                newPostText: ''
+            }
         case "UPDATE-NEW-POST":
-            state.newPostText = action.newText
-            return state
+            return {...state, newPostText: action.newText}
+        case "SET-USER-PROFILE":
+            return {...state, profile: action.profile}
         default:
-            return  state
+            return state
     }
 }
-
-export const addPostAC = () => ({type: "ADD-POST"}) as const
-export const changeNewTextAC = (newText: string) => ({type: "UPDATE-NEW-POST", newText: newText}) as const
+export const setUserProfile = (profile: null) => ({type: "SET-USER-PROFILE",  profile}) as const
+export const addPost = () => ({type: "ADD-POST"}) as const
+export const changeNewText = (newText: string) => ({type: "UPDATE-NEW-POST", newText}) as const

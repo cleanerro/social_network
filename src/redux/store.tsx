@@ -1,41 +1,20 @@
-import {addPostAC, changeNewTextAC, profileReducer} from "./profile-reducer";
-import {addMessageAC, dialogsReducer, onMessageChangeAC} from "./dialogs-reducer";
 
-export type DialogsType = {
-    id: number
-    name: string
-}
-export type MessagesType = {
-    id: number
-    message: string
-}
-export type PostsDataType = {
-    id: number
-    message: string
-    likesCount: string
-}
-export type ProfilePageType = {
-    posts: Array<PostsDataType>
-    newPostText: string
-}
-export type DialogsPageType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessagesType>
-    newMessageText: string
-}
-export type StateType = {
+import {addPost, changeNewText, ProfilePageType, profileReducer} from "./profile-reducer";
+import {addMessage, DialogsPageType, dialogsReducer, messageChange} from "./dialogs-reducer";
+
+
+ type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
 
+type ActionsTypes =
+    ReturnType<typeof addPost> |
+    ReturnType<typeof changeNewText> |
+    ReturnType<typeof addMessage> |
+    ReturnType<typeof messageChange>
 
-export type UpdateNewMessageActionsTypes = {
-    type: 'UPDATE-NEW-MESSAGE'
-    newText: string
-}
-
-
-export type StoreType = {
+type StoreType = {
     _state: StateType
     _callSubscriber: () => void
     subscribe: (callback: () => void) => void
@@ -43,12 +22,6 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 
 }
-
-export type ActionsTypes =
-    ReturnType<typeof addPostAC> |
-    ReturnType<typeof changeNewTextAC> |
-    ReturnType<typeof addMessageAC> |
-    ReturnType<typeof onMessageChangeAC>
 
 
 
@@ -63,7 +36,8 @@ let store: StoreType = {
                 {id: 4, message: 'Yo', likesCount: '57'},
                 {id: 5, message: 'Hello', likesCount: '44'},
             ],
-            newPostText: ''
+            newPostText: '',
+            profile: null
         },
         dialogsPage: {
             dialogs: [

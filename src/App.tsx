@@ -1,23 +1,33 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
-import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
-import {StoreType} from "./redux/state";
+import {Route} from "react-router-dom";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
-export type PropsType = {
-    store: StoreType
+
+export type DialogsType = {
+    id: number
+    name: string
 }
+export type MessagesType = {
+    id: number
+    message: string
+}
+export type PostsDataType = {
+    id: number
+    message: string
+    likesCount: string
+}
+export const App = () => {
 
-export const App: React.FC<PropsType> = ({store}) => {
-    let state = store.getState()
 
     return (
-        <BrowserRouter>
+        <>
             <div className='fixed-container'>
-                <Header/>
+                <HeaderContainer/>
             </div>
             <div className='central-container'>
                 <div className='fixed-container'>
@@ -25,10 +35,9 @@ export const App: React.FC<PropsType> = ({store}) => {
                         <Navbar/>
                     </div>
                     <div className='column-center'>
-                        <Route path='/dialogs' render={() => <Dialogs dialogsPage={state.dialogsPage}
-                                                                      dispatch={store.dispatch.bind(store)}/>}/>
-                        <Route path='/profile' render={() => <Profile profilePage={state.profilePage}
-                                                                      dispatch={store.dispatch.bind(store)}/>}/>
+                        <Route path='/dialogs' render={() => <DialogsContainer />}/>
+                        <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
+                        <Route path='/users' render={() => <UsersContainer />}/>
                     </div>
                     <div className='column-right'>
                         text text text
@@ -38,7 +47,7 @@ export const App: React.FC<PropsType> = ({store}) => {
                     </div>
                 </div>
             </div>
-        </BrowserRouter>
+        </>
     );
 }
 

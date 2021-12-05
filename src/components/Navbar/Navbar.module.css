@@ -12,7 +12,8 @@
 
 .item a {
     text-decoration: none;
-    color: midnightblue;
+    color:#005bbb;
+    font-weight: bold;
 }
 
 .item a.active {

@@ -1,19 +1,48 @@
 import s from './ProfileInfo.module.css';
+import {Preloader} from "../../Preloader/Preloader";
 
-type profileInfoPropsType ={
-    name: string
-    socialNetwork: string
-    avatar: string
-
+type contactsType = {
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: string
+    github: string
+    mainLink: string
 }
 
-export const ProfileInfo: React.FC<profileInfoPropsType> = (props) => {
+type photosType = {
+    small: string
+    large: string
+}
+
+export type profileInfoPropsType = {
+    aboutMe:string
+    contacts: contactsType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName:string
+    userId: string
+    photos: photosType
+}
+
+export type profilePropsType = {
+    profile: profileInfoPropsType | null
+}
+
+export const ProfileInfo = (props:profilePropsType ) => {
+    if(!props.profile){
+        return <Preloader />
+    }
     return (
         <div>
             <div className={s.descriptionInfo}>
-                <img src= {props.avatar}/><br/>
-                <div>{props.name}</div>
-                <div>{props.socialNetwork}</div>
+                <img src={props.profile.photos.large}/><br/>
+                <div>{props.profile.fullName}</div>
+                <div>{props.profile.aboutMe}</div>
+                <div>{props.profile.lookingForAJobDescription }  </div>
+                <div><a>{props.profile.contacts.website}</a></div>
             </div>
         </div>
     );

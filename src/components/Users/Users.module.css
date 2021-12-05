@@ -1,0 +1,83 @@
+.users {
+
+    /*border: 1px solid red;*/
+    border-bottom: 1px solid gainsboro;
+    padding-top: 10px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    color: midnightblue;
+}
+
+
+.users img {
+    width: 40px;
+    border-radius: 30px;
+    margin-left: 13px;
+}
+
+.avatar {
+    /*border: 1px solid goldenrod;*/
+    padding: 5px;
+     width: 60px;
+    margin-left: 10px;
+}
+
+.photo {
+
+
+}
+.follow {
+
+
+}
+
+.discription {
+   /* border: 1px solid darkmagenta;*/
+    margin-left: 5px;
+    padding: 10px;
+    width: 200px;
+
+}
+
+
+
+.name {
+    margin-bottom: 10px;
+}
+
+.status {
+
+
+}
+
+.location{
+    /*border: 1px solid darksalmon;*/
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    width: 130px;
+
+}
+
+.country {
+
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+.city{
+
+    margin-right: 20px;
+}
+
+.selectedPage{
+    font-weight: bold;
+}
+.pagination{
+    word-wrap:break-word;
+    border: 1px solid red;
+}
+.preloader{
+    display: block;
+    margin: 0 auto;
+}
