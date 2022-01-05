@@ -29,6 +29,7 @@ export type profileInfoPropsType = {
 
 export type profilePropsType = {
     profile: profileInfoPropsType | null
+
 }
 
 export const ProfileInfo = (props:profilePropsType ) => {
