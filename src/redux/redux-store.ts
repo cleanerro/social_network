@@ -11,6 +11,8 @@ import {
 
 } from "./users-reducer";
 import {authReducer, setUserData} from "./auth-reducer";
+import { applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 
 
 export type StateType = ReturnType<typeof reducer>
@@ -42,4 +44,4 @@ let reducer = combineReducers({
 
 export type StoreType = ReturnType<typeof reducer>
 
-export let store:Store<StoreType> = createStore(reducer)
+export let store:Store<StoreType> = createStore(reducer, applyMiddleware(thunk))
