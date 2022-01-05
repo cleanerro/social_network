@@ -42,6 +42,6 @@ let reducer = combineReducers({
 
 })
 
-export type StoreType = ReturnType<typeof reducer>
+export type AppStateType = ReturnType<typeof reducer>
 
-export let store:Store<StoreType> = createStore(reducer, applyMiddleware(thunk))
+export let store:Store<AppStateType> = createStore(reducer, applyMiddleware(thunk))

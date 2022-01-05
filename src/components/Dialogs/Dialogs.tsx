@@ -19,7 +19,7 @@ export const Dialogs = (props: DialogsPagePropsType) => {
             props.messageChange(newDialogElement.current.value)
         }
     }
-    if (!props.isAuth) return <Redirect to={'/login'}/>
+    //if (!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
         <>
