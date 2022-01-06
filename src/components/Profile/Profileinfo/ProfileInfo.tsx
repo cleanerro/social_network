@@ -1,5 +1,6 @@
 import s from './ProfileInfo.module.css';
 import {Preloader} from "../../Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 
 type contactsType = {
     facebook: string
@@ -18,11 +19,11 @@ type photosType = {
 }
 
 export type profileInfoPropsType = {
-    aboutMe:string
+    aboutMe: string
     contacts: contactsType
     lookingForAJob: boolean
     lookingForAJobDescription: string
-    fullName:string
+    fullName: string
     userId: string
     photos: photosType
 }
@@ -32,9 +33,9 @@ export type profilePropsType = {
 
 }
 
-export const ProfileInfo = (props:profilePropsType ) => {
-    if(!props.profile){
-        return <Preloader />
+export const ProfileInfo = (props: profilePropsType) => {
+    if (!props.profile) {
+        return <Preloader/>
     }
     return (
         <div>
@@ -42,8 +43,10 @@ export const ProfileInfo = (props:profilePropsType ) => {
                 <img src={props.profile.photos.large}/><br/>
                 <div>{props.profile.fullName}</div>
                 <div>{props.profile.aboutMe}</div>
-                <div>{props.profile.lookingForAJobDescription }  </div>
+                <div>{props.profile.lookingForAJobDescription}  </div>
                 <div><a>{props.profile.contacts.website}</a></div>
+                <ProfileStatus status={'profileStatus'}/>
+
             </div>
         </div>
     );
