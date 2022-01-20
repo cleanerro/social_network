@@ -1,17 +1,17 @@
-import {combineReducers, createStore, Store} from "redux";
-import {addPost, changeNewText, profileReducer, setUserProfile} from "./profile-reducer";
+import {applyMiddleware, combineReducers, createStore, Store} from "redux";
+import {addPost, changeNewText, profileReducer, setUserProfile, setUserStatus} from "./profile-reducer";
 import {addMessage, dialogsReducer, messageChange} from "./dialogs-reducer";
 import {
     follow,
-    setCurrentPage, toggleFollowingProgress,
-    toggleIsFetching,
+    setCurrentPage,
     setUsers,
     setUsersTotalCount,
-    unfollow, usersReducer,
-
+    toggleFollowingProgress,
+    toggleIsFetching,
+    unfollow,
+    usersReducer,
 } from "./users-reducer";
 import {authReducer, setUserData} from "./auth-reducer";
-import { applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 
@@ -29,6 +29,7 @@ export type ActionsTypes =
     ReturnType<typeof setUsersTotalCount>|
     ReturnType<typeof toggleIsFetching>|
     ReturnType<typeof setUserProfile>|
+    ReturnType<typeof setUserStatus>|
     ReturnType<typeof setUserData>|
     ReturnType<typeof toggleFollowingProgress>
 

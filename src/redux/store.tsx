@@ -37,7 +37,8 @@ let store: StoreType = {
                 {id: 5, message: 'Hello', likesCount: '44'},
             ],
             newPostText: '',
-            profile: null
+            profile: null,
+            status: ''
         },
         dialogsPage: {
             dialogs: [

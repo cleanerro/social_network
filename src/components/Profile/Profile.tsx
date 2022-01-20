@@ -6,10 +6,13 @@ import {ProfileContainerPagePropsType} from "./ProfileContainer";
 
 
 export const Profile = (props:ProfileContainerPagePropsType) => {
-    debugger
     return (
         <div>
             <ProfileInfo profile = {props.profile }
+                         status={props.status}
+                         updateUserStatus = {props.updateUserStatus}
+
+
             />
             <MyPostsContainer  />
         </div>

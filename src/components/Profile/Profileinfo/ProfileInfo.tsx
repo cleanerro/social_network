@@ -30,6 +30,10 @@ export type profileInfoPropsType = {
 
 export type profilePropsType = {
     profile: profileInfoPropsType | null
+    status: string
+    updateUserStatus: (userId: string) => void
+
+
 
 }
 
@@ -45,7 +49,7 @@ export const ProfileInfo = (props: profilePropsType) => {
                 <div>{props.profile.aboutMe}</div>
                 <div>{props.profile.lookingForAJobDescription}  </div>
                 <div><a>{props.profile.contacts.website}</a></div>
-                <ProfileStatus status={'profileStatus'}/>
+                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
 
             </div>
         </div>
