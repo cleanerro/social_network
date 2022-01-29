@@ -5,7 +5,6 @@ import {profileApi} from "../api/api";
 
 export type ProfilePageType = {
     posts: Array<PostsDataType>
-    newPostText: string
     profile: null
     status: string
 }
@@ -18,7 +17,6 @@ let initialState: ProfilePageType = {
         {id: 4, message: 'Yo', likesCount: '57'},
         {id: 5, message: 'Hello', likesCount: '44'},
     ],
-    newPostText: '',
     profile: null,
     status: ''
 }
@@ -29,16 +27,14 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Prof
         case "ADD-POST":
             let newPost: PostsDataType = {
                 id: 7,
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: '0'
             }
             return {
                 ...state,
                 posts: [newPost, ...state.posts],
-                newPostText: ''
+
             }
-        case "UPDATE-NEW-POST":
-            return {...state, newPostText: action.newText}
         case "SET-USER-PROFILE":
             return {...state, profile: action.profile}
         case "SET-USER-STATUS":
@@ -76,5 +72,4 @@ export const updateUserStatus = (status: string) => (dispatch: any) => {
 //AC
 export const setUserProfile = (profile: null) => ({type: "SET-USER-PROFILE", profile}) as const
 export const setUserStatus = (status: string) => ({type: "SET-USER-STATUS", status}) as const
-export const addPost = () => ({type: "ADD-POST"}) as const
-export const changeNewText = (newText: string) => ({type: "UPDATE-NEW-POST", newText}) as const
+export const addPost = (newPostText: string) => ({type: "ADD-POST", newPostText}) as const
