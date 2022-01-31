@@ -3,7 +3,6 @@ import {addMessage, DialogsPageType} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {StateType} from "../../redux/redux-store";
-import {withAuthRedirect} from "../hoc/withAuthRerdirect";
 import {compose} from "redux";
 
 type MapStateToPropsType = {

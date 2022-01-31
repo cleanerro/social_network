@@ -12,7 +12,7 @@ import {
     UsersPageType, toggleFollowingProgress
 } from "../../redux/users-reducer";
 import {Users} from "./Users";
-import {Preloader} from "../Preloader/Preloader";
+import {Preloader} from "../common/Preloader/Preloader";
 import {usersApi} from "../../api/api";
 
 

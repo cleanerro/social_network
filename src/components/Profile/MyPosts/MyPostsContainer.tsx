@@ -1,4 +1,3 @@
-import React from 'react';
 import {addPost, ProfilePageType} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
@@ -9,7 +8,7 @@ type MapStateToPropsType = {
 }
 type MapDispatchToPropsType = {
     addPost: (newPostText: string) => void
-    changeNewText: (message: string) => void
+
 }
 export  type MyPostsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
