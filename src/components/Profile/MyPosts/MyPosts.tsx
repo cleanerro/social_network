@@ -18,7 +18,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
 
     return (
-        <div className={s.postsBlock}>
+        <div>
             <h3>My posts</h3>
             <AddMessageReduxForm onSubmit={ addNewPost}/>
 
@@ -33,7 +33,7 @@ const maxLength = maxLengthCreator(10)
 const AddNewPostForm: React.FC<InjectedFormProps<newPostType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
+            <div >
                 <Field component = {Textarea}
                        name = 'newPostText'
                        placeholder = 'Enter new text'

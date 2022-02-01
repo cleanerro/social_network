@@ -34,6 +34,14 @@ export const authApi = {
     me() {
         return instance.get(`auth/me`)
             .then(res => res.data)
+    },
+    login() {
+        return instance.post(`auth/login`)
+            .then(res => res.data)
+    },
+    logout() {
+        return instance.delete(`auth/login`)
+            .then(res => res.data)
     }
 }
 
