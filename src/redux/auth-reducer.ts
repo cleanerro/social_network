@@ -39,7 +39,7 @@ export const setUserData = (userId: number|null, email: string|null, login: stri
     ) as const
 
 export const getUserData = () => (dispatch: any) => {
-    authApi.me()
+   return  authApi.me()
         .then(data => {
             if(data.resultCode === 0){
                 let {id, login, email} = data.data

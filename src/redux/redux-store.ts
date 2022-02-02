@@ -14,6 +14,7 @@ import {
 import {authReducer, setUserData} from "./auth-reducer";
 import thunk from "redux-thunk";
 import { reducer as formReducer } from 'redux-form'
+import {appReducer, setInitialize} from "./app-reducer";
 
 
 export type StateType = ReturnType<typeof reducer>
@@ -30,7 +31,9 @@ export type ActionsTypes =
     ReturnType<typeof setUserProfile>|
     ReturnType<typeof setUserStatus>|
     ReturnType<typeof setUserData>|
-    ReturnType<typeof toggleFollowingProgress>
+    ReturnType<typeof toggleFollowingProgress>|
+    ReturnType<typeof setInitialize>
+
 
 
 let reducer = combineReducers({
@@ -39,6 +42,7 @@ let reducer = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
+    app: appReducer
 
 
 })
