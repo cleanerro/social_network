@@ -7,6 +7,7 @@ import {loginTC} from "../../redux/auth-reducer";
 import {StateType} from "../../redux/redux-store";
 import {LoginDataType} from "../../api/api";
 import {Redirect} from "react-router";
+import s from "../common/FormsControls/FormsControls.module.css"
 
 type FormDataType = {
     email: string
@@ -35,6 +36,9 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                        name={'rememberMe'}
                 /> remember me
             </div>
+            {props.error && <div className={s.formSummaryError}>
+                { props.error}
+            </div>}
             <div>
                 <button>Login</button>
             </div>

@@ -1,5 +1,6 @@
 import {ActionsTypes} from "./redux-store";
 import {authApi, LoginDataType} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -51,10 +52,12 @@ export const loginTC = (data: LoginDataType) => (dispatch: any) => {
         .then(data => {
             if(data.resultCode === 0){
                 dispatch(getUserData())
+            }else{
+                let message  = data.messages.length> 0 ? data.messages[0]: 'Some error'
+                dispatch(stopSubmit('login', {_error: message}))
             }
         })
 }
-
 
 
 export const logoutTC = () => (dispatch: any) => {
