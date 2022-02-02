@@ -35,8 +35,8 @@ export const authApi = {
         return instance.get(`auth/me`)
             .then(res => res.data)
     },
-    login() {
-        return instance.post(`auth/login`)
+    login(data: LoginDataType ) {
+        return instance.post(`auth/login`, data)
             .then(res => res.data)
     },
     logout() {
@@ -54,4 +54,10 @@ export const followApi = {
         return instance.post(`follow/${userId}`)
             .then(res => res.data)
     }
+}
+
+export type LoginDataType = {
+    email: string
+    password: string
+    rememberMe: boolean
 }

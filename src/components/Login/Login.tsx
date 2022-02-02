@@ -2,33 +2,38 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {loginTC} from "../../redux/auth-reducer";
+import {StateType} from "../../redux/redux-store";
+import {LoginDataType} from "../../api/api";
+import {Redirect} from "react-router";
 
 type FormDataType = {
-    login: string
+    email: string
     password: string
     rememberMe: boolean
 }
-const maxLength = maxLengthCreator(15);
+const maxLength = maxLengthCreator(30);
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return <div>
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Login'}
-                       name={'login'}
+                <Field placeholder={'Email'}
+                       name={'email'}
                        component={Input}
-                       validate = {[required, maxLength ]}/>
+                       validate={[required, maxLength]}/>
             </div>
             <div>
                 <Field placeholder={'Password'}
                        name={'password'}
                        component={Input}
-                       validate = {[required, maxLength ]}/>
+                       validate={[required, maxLength]}/>
             </div>
             <div>
                 <Field component={Input}
                        type={"checkbox"}
                        name={'rememberMe'}
-                       /> remember me
+                /> remember me
             </div>
             <div>
                 <button>Login</button>
@@ -39,12 +44,32 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
-export const Login = () => {
+const Login = (props: LoginPropsType) => {
+    debugger
     const onSubmit = (formData: FormDataType) => {
+        props.loginTC(formData)
         console.log(formData)
+    }
+    if (props.isAuth) {
+        return <Redirect to={'/profile'}/>
     }
     return <div>
         <h1> Login </h1>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
+}
+let mapStateToProps = (state: StateType): MapStateToPropsType => (
+    {
+        isAuth: state.auth.isAuth
+    }
+)
+export default connect(mapStateToProps, {loginTC})(Login)
+
+export type LoginPropsType = MapStateToPropsType & MapDispatchToPropsType
+
+type MapStateToPropsType = {
+    isAuth: boolean
+}
+type MapDispatchToPropsType = {
+    loginTC: (data: LoginDataType) => void
 }
