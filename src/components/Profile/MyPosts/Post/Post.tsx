@@ -1,5 +1,6 @@
 import s from './Post.module.css';
-import {PostsDataType} from "../../../../redux/store";
+import {PostsDataType} from "../../../../App";
+
 
 
 

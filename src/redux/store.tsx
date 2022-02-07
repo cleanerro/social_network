@@ -1,6 +1,6 @@
 
-import {addPost, changeNewText, ProfilePageType, profileReducer} from "./profile-reducer";
-import {addMessage, DialogsPageType, dialogsReducer, messageChange} from "./dialogs-reducer";
+import {addPost, ProfilePageType, profileReducer} from "./profile-reducer";
+import {addMessage, DialogsPageType, dialogsReducer} from "./dialogs-reducer";
 
 
  type StateType = {
@@ -10,9 +10,9 @@ import {addMessage, DialogsPageType, dialogsReducer, messageChange} from "./dial
 
 type ActionsTypes =
     ReturnType<typeof addPost> |
-    ReturnType<typeof changeNewText> |
-    ReturnType<typeof addMessage> |
-    ReturnType<typeof messageChange>
+
+    ReturnType<typeof addMessage>
+
 
 type StoreType = {
     _state: StateType
@@ -36,7 +36,7 @@ let store: StoreType = {
                 {id: 4, message: 'Yo', likesCount: '57'},
                 {id: 5, message: 'Hello', likesCount: '44'},
             ],
-            newPostText: '',
+
             profile: null,
             status: ''
         },
@@ -56,7 +56,7 @@ let store: StoreType = {
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Hello'},
             ],
-            newMessageText: ''
+
         }
     },
     _callSubscriber() {
