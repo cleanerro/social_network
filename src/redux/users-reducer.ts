@@ -73,8 +73,6 @@ export const usersReducer = (state = initialState, action: ActionsTypes): UsersP
         case SET_USERS:{
             return {...state, users: action.users }
         }
-
-
         case SET_CURRENT_PAGE:{
             return {...state, currentPage: action.currentPage}
         }
@@ -87,7 +85,7 @@ export const usersReducer = (state = initialState, action: ActionsTypes): UsersP
         case TOGGLE_IS_FOLLOWING_PROGRESS:{
             return {...state, followingInProgress: action.isFetching
                     ?[...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id=> id != action.userId)}
+                    : state.followingInProgress.filter(id=> id !== action.userId)}
         }
         default:
             return state

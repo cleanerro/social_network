@@ -39,7 +39,7 @@ export type profilePropsType = {
 
 export const ProfileInfo = (props: profilePropsType) => {
     if (!props.profile) {
-        return <Preloader/>
+        return <Preloader />
     }
     return (
         <div>

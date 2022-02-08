@@ -58,8 +58,6 @@ export const loginTC = (data: LoginDataType) => (dispatch: any) => {
             }
         })
 }
-
-
 export const logoutTC = () => (dispatch: any) => {
     authApi.logout()
         .then(data => {

@@ -54,7 +54,6 @@ export class App extends React.Component<ProfileContainerPagePropsType> {
         );
     }
 }
-
 let MapStateToProps = (state: StateType): MapStateToPropsType => ({
         initialized: state.app.initialized
     }

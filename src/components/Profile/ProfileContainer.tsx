@@ -35,12 +35,10 @@ class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId
+        //@ts-ignore
+        if(!userId) {userId = this.props.authorisedUserID}
         if(!userId) {
-            //@ts-ignore
-            userId = this.props.authorisedUserID
-            if(!userId){
                 this.props.history.push('/login')
-            }
         }
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
