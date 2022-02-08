@@ -1,6 +1,7 @@
 import s from './ProfileInfo.module.css';
 import {Preloader} from "../../common/Preloader/Preloader";
-import ProfileStatus from "./ProfileStatus";
+import {ProfileStatus} from "./ProfileStatus";
+
 
 type contactsType = {
     facebook: string
@@ -31,7 +32,7 @@ export type profileInfoPropsType = {
 export type profilePropsType = {
     profile: profileInfoPropsType | null
     status: string
-    updateUserStatus: (userId: string) => void
+    updateUserStatus: (status: string) => void
 
 
 
