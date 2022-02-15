@@ -21,7 +21,10 @@ export class App extends React.Component<ProfileContainerPagePropsType> {
     }
 
     render() {
-
+        debugger
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
 
         return (
             <>
