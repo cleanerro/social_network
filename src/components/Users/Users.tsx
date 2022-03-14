@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import userPhoto from "../../assets/images/ava.png";
 import {UsersDataType} from "../../redux/users-reducer";
 import {followApi} from "../../api/api";
+import {Paginator} from "../common/Paginator/Paginator";
 
 export type UsersPagePropsType = {
     users: Array<UsersDataType>
@@ -38,7 +39,6 @@ export const Users = (props: UsersPagePropsType) => {
                                 <img src={u.photos.small != null ? u.photos.small : userPhoto}/>
                             </div>
                         </NavLink>
-
                         <div className={s.follow}>
                             {u.followed ?
                                 <button disabled={props.followingInProgress.some(id => id ===u.id)} onClick={() => {
@@ -50,7 +50,6 @@ export const Users = (props: UsersPagePropsType) => {
                                             }
                                             props.toggleFollowingProgress(false, u.id)
                                         })
-
                                 }}> Unfollow</button> :
                                 <button disabled={props.followingInProgress.some(id => id ===u.id)} onClick={() => {
                                     props.toggleFollowingProgress(true, u.id)
@@ -61,7 +60,6 @@ export const Users = (props: UsersPagePropsType) => {
                                                 props.follow(u.id)
                                             }
                                         props.toggleFollowingProgress(false, u.id)
-
                                     })
                                 }}> Follow</button>
                             }
@@ -77,17 +75,10 @@ export const Users = (props: UsersPagePropsType) => {
                     </div>
                 </div>
             </div>)}
-            <div className={s.pagination}>
-
-                {pages.map(p => {
-
-                    return <span className={props.currentPage === p ? s.selectedPage : ""}
-                                 onClick={() => {
-                                     props.onPageChanged(p)
-                                 }}> - {p}</span>
-                })}
-
-            </div>
+            <Paginator currentPage={props.currentPage}
+                       onPageChanged={props.onPageChanged}
+                       pageSize={props.pageSize}
+                       totalUsersCount={props.totalUsersCount}  />
 
         </div>
     )

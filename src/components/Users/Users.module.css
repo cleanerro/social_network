@@ -70,14 +70,8 @@
     margin-right: 20px;
 }
 
-.selectedPage{
-    font-weight: bold;
-}
-.pagination{
-    word-wrap:break-word;
-    border: 1px solid red;
-}
 .preloader{
     display: block;
     margin: 0 auto;
 }
+
