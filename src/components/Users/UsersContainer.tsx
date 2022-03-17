@@ -18,7 +18,7 @@ import {
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
-    getPageSize,
+    getPageSize, getPortionSize,
     getTotalUsersCount,
     getUsers
 } from "../../redux/users-selectors";
@@ -33,6 +33,7 @@ type MapDispatchToPropsType = {
     toggleIsFetching: (isFetching: boolean) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     onPageChanged?: (pageNumber: number) => void
+    portionSize: number
 
 }
 export type UsersContainerPagePropsType = UsersPageType & MapDispatchToPropsType
@@ -64,7 +65,7 @@ class UsersContainer extends React.Component <UsersContainerPagePropsType> {
             {this.props.isFetching ? <Preloader/> : null}
             <Users users={this.props.users}
                    pageSize={this.props.pageSize}
-                   totalUsersCount={this.props.totalUsersCount}
+                   totalItemsCount={this.props.totalUsersCount}
                    currentPage={this.props.currentPage}
                    follow={this.props.follow}
                    setCurrentPage={this.props.setCurrentPage}
@@ -74,6 +75,7 @@ class UsersContainer extends React.Component <UsersContainerPagePropsType> {
                    onPageChanged={this.onPageChanged}
                    toggleFollowingProgress = {this.props.toggleFollowingProgress}
                    followingInProgress={this.props.followingInProgress}
+                   portionSize ={this.props.portionSize}
 
 
 
@@ -90,7 +92,8 @@ let mapStateToProps = (state: StateType): UsersPageType => {
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        followingInProgress: getFollowingInProgress(state)
+        followingInProgress: getFollowingInProgress(state),
+        portionSize: getPortionSize(state),
     }
 }
 

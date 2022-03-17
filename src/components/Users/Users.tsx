@@ -1,15 +1,12 @@
-import s from "./Users.module.css";
 import React from "react";
-import {NavLink} from "react-router-dom";
-import userPhoto from "../../assets/images/ava.png";
 import {UsersDataType} from "../../redux/users-reducer";
-import {followApi} from "../../api/api";
 import {Paginator} from "../common/Paginator/Paginator";
+import {User} from "./User";
 
 export type UsersPagePropsType = {
     users: Array<UsersDataType>
     pageSize: number
-    totalUsersCount: number
+    totalItemsCount: number
     currentPage: number
     follow: (userId: number) => void
     unFollow: (userId: number) => void
@@ -19,67 +16,24 @@ export type UsersPagePropsType = {
     onPageChanged: (pageNumber: number) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<any>
+    portionSize: number
 }
 
-export const Users = (props: UsersPagePropsType) => {
+export const Users: React.FC<UsersPagePropsType> = (props) => {
+    return <div>
+        {props.users.map(u => <User user={u}
+                                    key={u.id}
+                                    followingInProgress={props.followingInProgress}
+                                    follow={props.follow}
+                                    toggleFollowingProgress={props.toggleFollowingProgress}
+                                    unFollow={props.unFollow}/>)}
 
-    let pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    for (let i = 1; i <= pageCount; i++) {
-        pages.push(i)
-    }
+        <Paginator currentPage={props.currentPage}
+                   onPageChanged={props.onPageChanged}
+                   pageSize={props.pageSize}
+                   portionSize = {props.portionSize}
+                   totalItemsCount={props.totalItemsCount}/>
 
-    return (
-        <div>
-            {props.users.map(u => <div key={u.id}>
-                <div className={s.users}>
-                    <div className={s.avatar}>
-                        <NavLink to={'profile/' + u.id}>
-                            <div className={s.photo}>
-                                <img src={u.photos.small != null ? u.photos.small : userPhoto}/>
-                            </div>
-                        </NavLink>
-                        <div className={s.follow}>
-                            {u.followed ?
-                                <button disabled={props.followingInProgress.some(id => id ===u.id)} onClick={() => {
-                                    props.toggleFollowingProgress(true, u.id)
-                                    followApi.unFollow(u.id)
-                                        .then(data => {
-                                            if (data.resultCode === 0) {
-                                                props.unFollow(u.id)
-                                            }
-                                            props.toggleFollowingProgress(false, u.id)
-                                        })
-                                }}> Unfollow</button> :
-                                <button disabled={props.followingInProgress.some(id => id ===u.id)} onClick={() => {
-                                    props.toggleFollowingProgress(true, u.id)
+    </div>
 
-                                    followApi.follow(u.id)
-                                    .then(data => {
-                                            if (data.resultCode === 0) {
-                                                props.follow(u.id)
-                                            }
-                                        props.toggleFollowingProgress(false, u.id)
-                                    })
-                                }}> Follow</button>
-                            }
-                        </div>
-                    </div>
-                    <div className={s.discription}>
-                        <div className={s.name}>{u.name}</div>
-                        <div className={s.status}>{u.status}</div>
-                    </div>
-                    <div className={s.location}>
-                        <div className={s.country}>{'u.location.country'}</div>
-                        <div className={s.city}>{'u.location.city'}</div>
-                    </div>
-                </div>
-            </div>)}
-            <Paginator currentPage={props.currentPage}
-                       onPageChanged={props.onPageChanged}
-                       pageSize={props.pageSize}
-                       totalUsersCount={props.totalUsersCount}  />
-
-        </div>
-    )
 }

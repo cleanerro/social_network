@@ -15,7 +15,7 @@ let initialState: ProfilePageType = {
         {id: 2, message: 'I am front-end developer', likesCount: '86'},
         {id: 3, message: 'Yo', likesCount: '46'},
         {id: 4, message: 'Yo', likesCount: '57'},
-        {id: 5, message: 'Hello', likesCount: '44'},
+
     ],
     profile: null,
     status: ''
@@ -59,7 +59,6 @@ export const getUserStatus = (userId: string) => (dispatch: any) => {
             dispatch(setUserStatus(data))
         })
 }
-
 export const updateUserStatus = (status: string) => (dispatch: any) => {
     profileApi.updateStatus(status)
         .then(data => {

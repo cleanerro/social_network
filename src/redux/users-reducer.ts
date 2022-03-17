@@ -33,14 +33,16 @@ export type UsersPageType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<number>
+    portionSize: number
 }
 
 let initialState: UsersPageType = {
     users: [],
     pageSize: 10,
-    totalUsersCount: 15,
-    currentPage: 100,
+    totalUsersCount: 200,
+    currentPage: 1,
     isFetching: true,
+    portionSize: 10,
     followingInProgress: []
 }
 
@@ -91,7 +93,11 @@ export const usersReducer = (state = initialState, action: ActionsTypes): UsersP
             return state
     }
 }
+//Thank
 
+
+
+//AC
 export const follow = (userId: number) => ({type: FOLLOW, userId}) as const
 export const unfollow = (userId: number) => ({type: UNFOLLOW, userId}) as const
 export const setUsers = (users: Array<UsersDataType>) => ({type: SET_USERS, users}) as const

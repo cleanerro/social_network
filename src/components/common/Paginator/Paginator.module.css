@@ -1,8 +1,28 @@
-.pagination{
-    word-wrap:break-word;
-    border: 1px solid red;
+.pagination {
+    display: flex;
+    align-items: center;
+    padding: 5px;
 }
 
-.selectedPage{
+.selectedPage {
     font-weight: bold;
+}
+.selectedPage:hover {
+    cursor: pointer;
+}
+
+.page {
+    margin: 2px;
+}
+.page:hover {
+    cursor: pointer;
+}
+
+.items {
+    margin: 0 auto;
+}
+
+.pagination button {
+    margin: 5px;
+    border: none;
 }

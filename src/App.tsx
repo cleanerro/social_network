@@ -12,7 +12,6 @@ import {getUserData} from "./redux/auth-reducer";
 import {compose} from 'redux';
 import {initializeApp} from "./redux/app-reducer";
 import {StateType} from "./redux/redux-store";
-import {Preloader} from "./components/common/Preloader/Preloader";
 
 export class App extends React.Component<ProfileContainerPagePropsType> {
 
