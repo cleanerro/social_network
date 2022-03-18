@@ -1,6 +1,8 @@
 import s from './ProfileInfo.module.css';
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
+import userPhoto from "../../../assets/images/ava.png";
+import React from "react";
 
 
 type contactsType = {
@@ -45,7 +47,7 @@ export const ProfileInfo = (props: profilePropsType) => {
     return (
         <div>
             <div className={s.descriptionInfo}>
-                <img src={props.profile.photos.large}/><br/>
+                <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto}/><br/>
                 <div>{props.profile.fullName}</div>
                 <div>{props.profile.aboutMe}</div>
                 <div>{props.profile.lookingForAJobDescription}  </div>
