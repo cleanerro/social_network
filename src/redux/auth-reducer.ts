@@ -1,6 +1,7 @@
 import {ActionsTypes} from "./redux-store";
 import {authApi, LoginDataType} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {profileInfoPropsType} from "../components/Profile/Profileinfo/ProfileInfo";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -11,6 +12,8 @@ export type AuthType = {
     email: string | null
     login: string | null
     isAuth: boolean
+    profile?: profileInfoPropsType | null
+
 }
 
 let initialState: AuthType = {
