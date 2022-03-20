@@ -44,18 +44,20 @@ export const ProfileInfo = (props: profilePropsType) => {
     if (!props.profile) {
         return <Preloader />
     }
-    return (
-        <div>
-            <div className={s.descriptionInfo}>
-                <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto}/><br/>
-                <div>{props.profile.fullName}</div>
-                <div>{props.profile.aboutMe}</div>
-                <div>{props.profile.lookingForAJobDescription}  </div>
-                <div><a>{props.profile.contacts.website}</a></div>
-                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
-
+    return (<div className={s.descriptionInfo}>
+            <div >
+                <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto}/>
             </div>
-        </div>
+            <div className={s.photo}>{props.profile.fullName}</div>
+            <div>{props.profile.aboutMe}</div>
+            <div>{props.profile.lookingForAJobDescription}  </div>
+            <div><a>{props.profile.contacts.website}</a></div>
+            <div className={s.status}>
+                <ProfileStatus  status={props.status} updateUserStatus={props.updateUserStatus}/>
+            </div>
+
+    </div>
+
     );
 }
 

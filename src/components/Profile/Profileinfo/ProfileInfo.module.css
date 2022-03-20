@@ -1,14 +1,23 @@
-.descriptionInfo{
-    padding-left: 10px;
-    background-color: aliceblue;
+.descriptionInfo {
+    padding: 10px 10px 10px 20px;
+    background-color: #FFF;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+
 }
 
-.descriptionInfo img{
+.descriptionInfo img {
     width: 150px;
+
 }
 
-.headerInfo img {
-    width: 520px;
-    height: 100px;
+.photo {
+    margin-top: 10px;
+    font-weight: bold;
+
+}
+
+.status {
+    margin-top: 10px;
 
 }

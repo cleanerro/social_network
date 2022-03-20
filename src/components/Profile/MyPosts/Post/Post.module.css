@@ -1,8 +1,50 @@
-.item{
+.post {
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #FFF;
+    color: #005bbb;
+    font-weight: 500;
+}
+
+.header {
+    display: flex;
+    margin-bottom: 10px;
 
 }
 
-.item img {
-    width: 50px;
+.avatar {
+
+}
+.name {
+    margin-left: 10px;
+}
+
+.avatar img {
+    width: 40px;
     border-radius: 30px;
+}
+
+.text{
+    margin-bottom: 10px;
+    color: black;
+    font-weight: 400;
+
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+}
+.likes {
+    margin-left: 15px;
+    color: #005bbb;
+}
+.comments {
+    margin-right: 15px;
+    color: #005bbb;
+
 }

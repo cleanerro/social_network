@@ -1,7 +1,23 @@
 .postsBlock{
-    padding-left: 10px;
+
+
 }
 
-.posts{
+.postsBlock h3{
+    color: #005bbb;
+}
+
+.post{
     margin-top: 10px;
+
+
+}
+.form{
+    margin-top: 10px;
+    background-color: #FFF;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+
 }

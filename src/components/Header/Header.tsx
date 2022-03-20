@@ -16,7 +16,8 @@ export const Header = (props: HeaderContainerPagePropsType) => {
                 {props.isAuth
                     ? <div className={s.login}>
                         <span className={s.photo}>
-                             <img src={props.profile?.photos.large != null ? props.profile.photos.large : userPhoto}/>
+                            {props.login}
+                            {/* <img src={props.profile?.photos.large != null ? props.profile.photos.large : userPhoto}/>*/}
                         </span>
                         <span className={s.button}>
                             <button onClick={props.logoutTC}>Log out</button>

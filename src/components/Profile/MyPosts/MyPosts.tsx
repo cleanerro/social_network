@@ -9,7 +9,8 @@ import {Textarea} from "../../common/FormsControls/FormsControls";
 
 export const MyPosts = (props: MyPostsPropsType) => {
 
-    let messages = props.profilePage.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>)
+    let messages = props.profilePage.posts.map(p =>
+        <Post id={p.id} message={p.message} likesCount={p.likesCount}/>)
 
 
     const addNewPost = (value: newPostType) => {
@@ -18,18 +19,19 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
 
     return (
-        <div>
-            <h3>My posts</h3>
-            <AddMessageReduxForm onSubmit={ addNewPost}/>
-
-            <div className={s.posts}>
+        <div className={s.postsBlock}>
+            <div className={s.form}>
+                <h3>Posts</h3>
+                <AddMessageReduxForm onSubmit={ addNewPost}/>
+            </div>
+            <div className={s.post}>
                 {messages}
             </div>
         </div>
 
     );
 }
-const maxLength = maxLengthCreator(10)
+const maxLength = maxLengthCreator(1000)
 const AddNewPostForm: React.FC<InjectedFormProps<newPostType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
