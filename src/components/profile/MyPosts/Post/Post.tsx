@@ -1,5 +1,6 @@
 import s from './Post.module.css';
 import {PostsDataType} from "../../../../App";
+import {useState} from "react";
 
 
 
@@ -7,8 +8,11 @@ import {PostsDataType} from "../../../../App";
 
 export const Post = (props: PostsDataType ) => {
 
+    let [likesCount, setLikesCount] = useState(props.likesCount)
+    let onAddLikeCountHandler = () => {
+        setLikesCount(likesCount + 1)
+    }
     return (
-
         <div className={s.post}>
             <div className={s.header}>
                 <div className={s.avatar}>
@@ -22,7 +26,7 @@ export const Post = (props: PostsDataType ) => {
                 {props.message}
             </div>
             <div className={s.footer}>
-                <div className={s.likes}>like {props.likesCount}</div>
+                <div className={s.likes} onClick={onAddLikeCountHandler}>like {likesCount}</div>
                 <div className={s.comments}>{'comments'}</div>
             </div>
         </div>

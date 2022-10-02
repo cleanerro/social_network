@@ -1,17 +1,19 @@
 import React from 'react';
 import './App.css';
-import {Navbar} from "./components/Navbar/Navbar";
+import {Navbar} from "./components/navbar/Navbar";
 import {Route, withRouter} from "react-router-dom";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./components/Login/Login";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/users/UsersContainer";
+import ProfileContainer from "./components/profile/ProfileContainer";
+import HeaderContainer from "./components/header/HeaderContainer";
+import Login from "./components/login/Login";
+import DialogsContainer from "./components/dialogs/DialogsContainer";
 import {connect} from "react-redux";
 import {getUserData} from "./redux/auth-reducer";
 import {compose} from 'redux';
 import {initializeApp} from "./redux/app-reducer";
 import {StateType} from "./redux/redux-store";
+import {Preloader} from "./components/common/Preloader/Preloader";
+import {Settings} from "./components/settings/Settings";
 
 export class App extends React.Component<ProfileContainerPagePropsType> {
 
@@ -20,10 +22,9 @@ export class App extends React.Component<ProfileContainerPagePropsType> {
     }
 
     render() {
-       /* if (!this.props.initialized) {
+        if (!this.props.initialized) {
             return <Preloader/>
-        }*/
-
+        }
         return (
             <>
                 <div className='fixed-container'>
@@ -39,6 +40,8 @@ export class App extends React.Component<ProfileContainerPagePropsType> {
                             <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                             <Route path='/users' render={() => <UsersContainer/>}/>
                             <Route path='/login' render={() => <Login/>}/>
+                            <Route path='/settings' render={() => <Settings/>}/>
+
                         </div>
                         <div className='column-right'>
                             text text text
@@ -83,5 +86,5 @@ export type MessagesType = {
 export type PostsDataType = {
     id: number
     message: string
-    likesCount: string
+    likesCount: number
 }

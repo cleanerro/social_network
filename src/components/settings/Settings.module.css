@@ -1,0 +1,10 @@
+.container{
+    padding: 15px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.container h1{
+    color: #005bbb;
+}

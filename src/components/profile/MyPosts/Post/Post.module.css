@@ -43,6 +43,10 @@
     margin-left: 15px;
     color: #005bbb;
 }
+
+.likes:hover{
+    cursor: pointer;
+}
 .comments {
     margin-right: 15px;
     color: #005bbb;

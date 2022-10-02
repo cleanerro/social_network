@@ -3,7 +3,7 @@ import {Header} from "./Header";
 import {connect} from "react-redux";
 import {AuthType,  logoutTC} from "../../redux/auth-reducer";
 import {StateType} from "../../redux/redux-store";
-import {profileInfoPropsType} from "../Profile/Profileinfo/ProfileInfo";
+import {profileInfoPropsType} from "../profile/Profileinfo/ProfileInfo";
 
 
 type MapDispatchToPropsType = {

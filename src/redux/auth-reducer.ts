@@ -1,7 +1,7 @@
 import {ActionsTypes} from "./redux-store";
 import {authApi, LoginDataType} from "../api/api";
 import {stopSubmit} from "redux-form";
-import {profileInfoPropsType} from "../components/Profile/Profileinfo/ProfileInfo";
+import {profileInfoPropsType} from "../components/profile/Profileinfo/ProfileInfo";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
